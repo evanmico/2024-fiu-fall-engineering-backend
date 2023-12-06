@@ -3,6 +3,25 @@ import express from "express";
 import cors from "cors";
 import connectDB from './config/dbConn.js';
 
+import logEvents from './logEvents.js';
+
+import EventEmitter from 'events';
+
+class MyEmitter extends EventEmitter {
+
+};
+
+//initialize object
+const myEmitter = new MyEmitter();
+
+//add listener for the log event
+myEmitter.on('log', (msg) => logEvents(msg));
+
+setTimeout(() => {
+  //Emit event
+  myEmitter.emit('log', 'Log event emitted!');
+}, 2000);
+
 const app = express();
 
 app.use(express.json());
