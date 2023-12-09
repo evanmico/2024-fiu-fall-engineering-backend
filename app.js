@@ -7,18 +7,17 @@ app.use(cors(corsOptions));
 
 import express from "express";
 
+import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
+import errorHandler from "./middleware/errorHandler.js";
+import { logger } from "./middleware/logEvents.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-import path from "path";
-import { logger } from "./middleware/logEvents.js";
-import errorHandler from "./middleware/errorHandler.js";
 const PORT = process.env.PORT || 8805;
 
-import { rootRouter } from "./routes/root.js";
 import { accountsRouter } from "./routes/api/accounts.js";
 import { clientsRouter } from "./routes/api/clients.js";
+import { rootRouter } from "./routes/root.js";
 
 // custom middleware logger 
 app.use(logger);
