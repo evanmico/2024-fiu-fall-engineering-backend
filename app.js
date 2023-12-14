@@ -20,6 +20,7 @@ import { rootRouter } from "./routes/root.js";
 import { accountsRouter } from "./routes/api/accounts.js";
 import { clientsRouter } from "./routes/api/clients.js";
 import { registerRouter } from "./routes/api/register.js";
+import { authRouter } from "./routes/api/auth.js";
 
 // custom middleware logger 
 app.use(logger);
@@ -38,6 +39,7 @@ app.use("/", rootRouter);
 app.use("/accounts", accountsRouter);
 app.use("/clients", clientsRouter);
 app.use('/register', registerRouter);
+app.use('/login', authRouter);
 
 //next.js handles these like a waterfall, so here we put our catch all at the end if none of the others were chosen
 app.all("*", catchAll);

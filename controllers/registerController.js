@@ -12,12 +12,12 @@ const handleNewAccount = async (req, res) => {
     //Check for duplicate emails in the database
     const accReqSQLObj = SQL`SELECT (email) FROM account A WHERE A.email = ${email}`;
     try{
-        const result = await connectDB.query(accReqSQLObj).then((([data,]) => data), );
+        const result = await connectDB.query(accReqSQLObj).then((([data,]) => data));
         if(!(result === undefined || result.length == 0)) { return res.status(409).json({'message': 'email already has an associated account'})
         };
 
     } catch(err) {
-        () => res.status(500).json({'message': 'internal server error occured'});
+        return () => res.status(500).json({'message': 'internal server error occured'});
     }
    
 
