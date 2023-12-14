@@ -16,9 +16,10 @@ const __dirname = dirname(__filename);
 const PORT = process.env.PORT || 8805;
 import { catchAll } from "./controllers/appController.js";
 
+import { rootRouter } from "./routes/root.js";
 import { accountsRouter } from "./routes/api/accounts.js";
 import { clientsRouter } from "./routes/api/clients.js";
-import { rootRouter } from "./routes/root.js";
+import { registerRouter } from "./routes/api/register.js";
 
 // custom middleware logger 
 app.use(logger);
@@ -36,6 +37,7 @@ app.use("/", express.static(path.join(__dirname, "/public")));
 app.use("/", rootRouter);
 app.use("/accounts", accountsRouter);
 app.use("/clients", clientsRouter);
+app.use('/register', registerRouter);
 
 //next.js handles these like a waterfall, so here we put our catch all at the end if none of the others were chosen
 app.all("*", catchAll);
