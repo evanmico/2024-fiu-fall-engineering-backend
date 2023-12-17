@@ -2,6 +2,7 @@ import { Router } from "express";
 const router = Router();
 import { createNewAccount, deleteAccount, deleteAccounts, getAccount, getAllAccounts, updateAccount } from "../../controllers/accountsController.js"
 
+
 router
   .route("/")
   .get(getAllAccounts)
